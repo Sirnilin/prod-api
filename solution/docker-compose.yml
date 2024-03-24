@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: "postgres:11-alpine"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
+    networks:
+      - my_network
+networks:
+  my_network:
+    driver: bridge
